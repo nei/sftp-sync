@@ -1,0 +1,19 @@
+{
+    "name": "nei/sftp-sync-files",
+    "authors": [
+        {
+            "name": "Nei Santos",
+            "email": "nrauni@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Nei\\": "src/"
+        }
+    },
+    "require": {
+        "league/flysystem-sftp": "^1.0",
+        "monolog/monolog": "^2.1",
+        "vlucas/phpdotenv": "^4.1"
+    }
+}

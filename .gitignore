@@ -1,0 +1,6 @@
+.env
+.idea
+syncedFiles.json
+vendor
+composer.lock
+app.log
