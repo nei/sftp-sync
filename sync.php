@@ -8,7 +8,7 @@ require __DIR__ . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$log = new Monolog\Logger('name');
+$log = new Monolog\Logger('sync');
 $log->pushHandler(new Monolog\Handler\StreamHandler('app.log', Monolog\Logger::DEBUG));
 $log->debug('Starting sync of the sftp servers');
 
@@ -52,10 +52,6 @@ foreach ($directories as $object) {
         return $file['filename'] !== 'Processed' && $isFileRecent && !$hasBeenSynced;
     });
 
-    if (empty($files)) {
-        $log->debug('No files to copy.');
-    }
-
     foreach ($files as $file) {
         if (!$sftpFrom->has($file['path']) ) {
             $log->debug('Copying file '.$file['path'].' to staging.');
@@ -84,7 +80,7 @@ foreach ($directories as $object) {
 if (empty($copiedFiles)) {
     $log->debug('No files were copied. all in sync.');
 }else{
-    $log->debug(count($copiedFiles.' files has been copied.');
+    $log->debug(count($copiedFiles).' files has been copied.');
 }
 
 // save the files that has been synced
